@@ -1,0 +1,12 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Friendly URL: /api/scan -> the function
+[[redirects]]
+  from = "/api/scan"
+  to = "/.netlify/functions/scan"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
