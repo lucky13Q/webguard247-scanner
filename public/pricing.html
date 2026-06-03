@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebGuard247 — Pricing</title>
+<meta name="description" content="WebGuard247 pricing — scan free, get a complete fix-it guide for £4.99, or keep your site watched with Pro and Agency monitoring." />
+<meta name="author" content="ONLINE PORQUPINE LTD" />
+<meta property="og:title" content="WebGuard247 — Pricing" />
+<meta property="og:description" content="Scan free. Pay £4.99 for the full fix-it guide. Or stay watched from £9/month." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://webguard247.com/pricing" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070a09; --panel:#0f1613; --panel2:#0b1110; --line:#1d2a24; --line2:#27362f;
+    --ink:#e9f1ec; --muted:#7d8d84; --muted2:#9fb0a6;
+    --accent:#b8ff3a; --accent-dim:#7fae2e;
+    --pass:#b8ff3a; --warn:#ffb340; --fail:#ff5a5f; --info:#5f8295;
+    --mono:'JetBrains Mono',ui-monospace,monospace; --body:'Sora',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.6;
+    background-image:
+      radial-gradient(1100px 600px at 78% -8%, rgba(184,255,58,.10), transparent 58%),
+      radial-gradient(800px 500px at 5% 18%, rgba(95,130,149,.07), transparent 55%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:auto,auto,48px 48px,48px 48px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:14px;flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-weight:800;letter-spacing:-1px;font-size:21px;text-decoration:none}
+  .brand b{color:var(--accent)} .brand .d{color:var(--accent)}
+  .nav-right{display:flex;align-items:center;gap:18px;font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+  .nav-right a{text-decoration:none}
+  .nav-right a.cur{color:var(--ink)}
+  .nav-cta{color:#08120a;background:var(--accent);padding:9px 16px;border-radius:8px;text-decoration:none;font-weight:800;letter-spacing:.5px}
+
+  header.phero{padding:50px 0 8px;animation:rise .7s ease both;text-align:center}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent-dim);margin-bottom:18px}
+  h1{font-family:var(--mono);font-weight:800;font-size:clamp(32px,6vw,54px);line-height:1.02;letter-spacing:-2px;margin:0 0 16px}
+  h1 .hl{color:var(--accent)}
+  .lede{color:var(--muted2);font-size:clamp(16px,2.2vw,19px);font-weight:300;max-width:580px;margin:0 auto}
+
+  .billing{display:flex;justify-content:center;align-items:center;gap:14px;margin:34px 0 6px;flex-wrap:wrap}
+  .seg{display:inline-flex;background:var(--panel2);border:1px solid var(--line2);border-radius:11px;padding:4px}
+  .seg button{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--muted2);
+    background:transparent;border:none;padding:9px 18px;border-radius:8px;cursor:pointer;transition:.15s}
+  .seg button.on{background:var(--accent);color:#08120a;font-weight:800}
+  .savetag{font-family:var(--mono);font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--accent-dim);
+    border:1px solid rgba(184,255,58,.32);border-radius:999px;padding:5px 11px}
+
+  .ptiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 8px;align-items:stretch}
+  @media(max-width:980px){.ptiers{grid-template-columns:repeat(2,1fr);max-width:680px;margin-left:auto;margin-right:auto}}
+  @media(max-width:560px){.ptiers{grid-template-columns:1fr;max-width:400px}}
+  .ptier{position:relative;background:var(--panel);border:1px solid var(--line2);border-radius:18px;padding:26px 20px;display:flex;flex-direction:column;transition:.18s}
+  .ptier:hover{transform:translateY(-3px)}
+  .ptier.feat{border-color:var(--accent-dim);box-shadow:0 0 0 1px rgba(184,255,58,.18),0 24px 60px -30px rgba(184,255,58,.4)}
+  .badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#08120a;
+    font-family:var(--mono);font-weight:800;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .pname{font-family:var(--mono);font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--accent-dim)}
+  .pname.free{color:var(--info)} .pname.pro{color:var(--accent)} .pname.agency{color:var(--muted2)}
+  .priceline{display:flex;align-items:baseline;gap:2px;margin:15px 0 2px;font-family:var(--mono)}
+  .priceline .cur{font-size:20px;font-weight:600;color:var(--muted2)}
+  .priceline .amt{font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1}
+  .priceline .per{font-size:13px;color:var(--muted);margin-left:2px}
+  .pnote{font-family:var(--mono);font-size:11px;color:var(--muted);min-height:15px;margin-bottom:4px}
+  .pdesc{color:var(--muted2);font-size:13px;font-weight:300;margin:6px 0 0;min-height:54px}
+  .feats{list-style:none;padding:0;margin:18px 0 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .feats li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--ink);line-height:1.4}
+  .feats li .ck{flex:0 0 auto;color:var(--accent);font-family:var(--mono);font-weight:800;margin-top:0}
+  .feats li.head{color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+  .feats li.head .ck{display:none}
+  .pcta{display:block;text-align:center;text-decoration:none;font-family:var(--mono);font-weight:800;font-size:13.5px;letter-spacing:.5px;
+    padding:13px 14px;border-radius:11px;cursor:pointer;border:1px solid var(--line2);background:transparent;color:var(--ink);transition:.15s;width:100%}
+  .pcta:hover{border-color:var(--accent-dim);transform:translateY(-1px)}
+  .pcta.solid{background:var(--accent);color:#08120a;border-color:var(--accent)}
+  .pcta.solid:hover{filter:brightness(1.08)}
+
+  .brackets{margin:30px 0 0;background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .brackets h3{font-family:var(--mono);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+  .brackets p{color:var(--muted2);font-size:13.5px;font-weight:300;margin:0 0 18px;max-width:560px}
+  .brow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  @media(max-width:720px){.brow{grid-template-columns:repeat(2,1fr)}}
+  .bcell{border:1px solid var(--line2);border-radius:11px;padding:14px;text-align:center;font-family:var(--mono)}
+  .bcell .bn{font-size:12px;color:var(--muted)} .bcell .bp{font-size:18px;font-weight:800;margin-top:4px}
+  .bcell .bp small{font-size:11px;color:var(--muted);font-weight:400}
+
+  .reassure{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin:32px 0 4px;color:var(--muted);font-size:13px;font-family:var(--mono)}
+  .reassure span{display:flex;align-items:center;gap:7px}
+  .reassure i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+
+  .faq{padding:54px 0 10px;max-width:840px;margin:0 auto}
+  .faq h2{font-family:var(--mono);font-weight:800;font-size:clamp(22px,4vw,30px);letter-spacing:-1px;margin:0 0 26px;text-align:center}
+  .qa{border-top:1px solid var(--line);padding:20px 0}
+  .qa .q{font-family:var(--mono);font-size:15px;font-weight:600;margin-bottom:7px}
+  .qa .a{color:var(--muted2);font-size:14px;font-weight:300}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:40px;color:var(--muted);font-size:12.5px;font-family:var(--mono);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;
+    background:var(--panel);border:1px solid var(--accent-dim);color:var(--ink);font-family:var(--mono);font-size:13px;
+    padding:13px 18px;border-radius:11px;transition:.25s;max-width:90vw;box-shadow:0 20px 50px -20px rgba(0,0,0,.7);z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="index.html">Web<b>Guard</b><span class="d">&middot;</span>247</a>
+    <div class="nav-right">
+      <a href="index.html#how">How it works</a>
+      <a href="pricing.html" class="cur">Pricing</a>
+      <a href="login.html">Log in</a>
+      <a href="index.html#top" class="nav-cta">Scan a site</a>
+    </div>
+  </nav>
+
+  <header class="phero">
+    <div class="eyebrow">Pricing &middot; ONLINE PORQUPINE LTD</div>
+    <h1>Scan free. Stay <span class="hl">protected</span>.</h1>
+    <p class="lede">Scan your site for free. Get the complete fix-it guide. Or let us keep watch on your site around the year.</p>
+
+    <div class="billing">
+      <div class="seg">
+        <button id="bm" class="on" onclick="setBilling('m')">Monthly</button>
+        <button id="by" onclick="setBilling('y')">Yearly</button>
+      </div>
+      <span class="savetag">Yearly = 2 months free</span>
+    </div>
+  </header>
+
+  <section class="ptiers">
+
+    <!-- FREE -->
+    <div class="ptier">
+      <div class="pname free">Free</div>
+      <div class="priceline"><span class="cur">&pound;</span><span class="amt">0</span><span class="per">forever</span></div>
+      <div class="pnote">No card needed</div>
+      <p class="pdesc">Scan your site instantly, free.</p>
+      <ul class="feats">
+        <li><span class="ck">&check;</span> Instant security scan</li>
+        <li><span class="ck">&check;</span> Traffic-light report, worst first</li>
+        <li><span class="ck">&check;</span> Your score out of 100</li>
+        <li><span class="ck">&check;</span> See every issue found</li>
+        <li><span class="ck">&check;</span> Scan as often as you like</li>
+        <li><span class="ck">&check;</span> 1 website</li>
+      </ul>
+      <a class="pcta" href="index.html#top">Run a free scan</a>
+    </div>
+
+    <!-- FIX-IT GUIDE -->
+    <div class="ptier">
+      <div class="pname">Fix-It Guide</div>
+      <div class="priceline"><span class="cur">&pound;</span><span class="amt">4.99</span><span class="per">once</span></div>
+      <div class="pnote">One-time purchase</div>
+      <p class="pdesc">The complete step-by-step fix &mdash; one site, one time.</p>
+      <ul class="feats">
+        <li class="head"><span class="ck"></span>Everything in Free, plus</li>
+        <li><span class="ck">&check;</span> Every fault explained in full</li>
+        <li><span class="ck">&check;</span> Step-by-step fix for each one</li>
+        <li><span class="ck">&check;</span> Downloadable PDF to keep or share</li>
+        <li><span class="ck">&check;</span> 1 website</li>
+      </ul>
+      <a class="pcta" onclick="choosePlan('Fix-It Guide')">Get the guide</a>
+    </div>
+
+    <!-- PRO -->
+    <div class="ptier feat">
+      <div class="badge">Most popular</div>
+      <div class="pname pro">Pro</div>
+      <div class="priceline"><span class="cur">&pound;</span><span class="amt" data-m="9" data-y="89">9</span><span class="per" data-m="/month" data-y="/year">/month</span></div>
+      <div class="pnote" id="note-pro">Billed monthly</div>
+      <p class="pdesc">Ongoing monitoring of your site.</p>
+      <ul class="feats">
+        <li class="head"><span class="ck"></span>Everything in Free and the fixes PDF, plus</li>
+        <li><span class="ck">&check;</span> Re-scanned every 3 days</li>
+        <li><span class="ck">&check;</span> Email alerts on any change</li>
+        <li><span class="ck">&check;</span> SSL / certificate expiry warnings</li>
+        <li><span class="ck">&check;</span> Scan history &amp; trends</li>
+        <li><span class="ck">&check;</span> 1 website</li>
+      </ul>
+      <a class="pcta solid" onclick="choosePlan('Pro')">Get Pro</a>
+    </div>
+
+    <!-- AGENCY -->
+    <div class="ptier">
+      <div class="pname agency">Agency</div>
+      <div class="priceline"><span class="cur">&pound;</span><span class="amt" data-m="29" data-y="290">29</span><span class="per" data-m="/month" data-y="/year">/month</span></div>
+      <div class="pnote" id="note-agency">Billed monthly</div>
+      <p class="pdesc">For studios &amp; freelancers with a whole portfolio.</p>
+      <ul class="feats">
+        <li class="head"><span class="ck"></span>Everything in Pro, plus</li>
+        <li><span class="ck">&check;</span> Up to 10 websites</li>
+        <li><span class="ck">&check;</span> Re-scanned daily</li>
+        <li><span class="ck">&check;</span> White-label reports</li>
+        <li><span class="ck">&check;</span> One dashboard for every site</li>
+        <li><span class="ck">&check;</span> Priority support</li>
+      </ul>
+      <a class="pcta" onclick="choosePlan('Agency')">Get Agency</a>
+    </div>
+
+  </section>
+
+  <section class="brackets">
+    <h3>Running more than 10 sites?</h3>
+    <p>Agency scales with your portfolio &mdash; pay one flat yearly fee and look after every client under your own white-labelled reports.</p>
+    <div class="brow">
+      <div class="bcell"><div class="bn">UP TO 10</div><div class="bp">&pound;290<small>/yr</small></div></div>
+      <div class="bcell"><div class="bn">UP TO 25</div><div class="bp">&pound;590<small>/yr</small></div></div>
+      <div class="bcell"><div class="bn">UP TO 50</div><div class="bp">&pound;990<small>/yr</small></div></div>
+      <div class="bcell"><div class="bn">UP TO 100</div><div class="bp">&pound;1,790<small>/yr</small></div></div>
+      <div class="bcell"><div class="bn">100+</div><div class="bp">Custom</div></div>
+    </div>
+  </section>
+
+  <div class="reassure">
+    <span><i></i> Cancel anytime</span>
+    <span><i></i> Secure payments by Stripe</span>
+    <span><i></i> Free plan, no card</span>
+  </div>
+
+  <section class="faq">
+    <h2>Questions, answered</h2>
+    <div class="qa"><div class="q">Do you fix the problems for me?</div>
+      <div class="a">No &mdash; WebGuard247 finds the issues and gives you clear, step-by-step instructions to fix each one (or hand to your developer). It's a diagnosis and an action plan, not a repair service.</div></div>
+    <div class="qa"><div class="q">What's the difference between the &pound;4.99 guide and Pro?</div>
+      <div class="a">The &pound;4.99 Fix-It Guide is a one-time snapshot &mdash; it shows you how to fix everything wrong today, and it's yours to keep. Pro keeps watching your site for you, re-scanning every few days and emailing the moment something new slips, so you're covered over time rather than just once.</div></div>
+    <div class="qa"><div class="q">What does the monitoring actually do?</div>
+      <div class="a">We re-check your site on a set schedule &mdash; every 3 days on Pro, daily on Agency &mdash; and watch for anything that changes: a certificate about to expire, a security setting that drops, or your site going unreachable. If something shifts, we email you so you can act before it becomes a problem.</div></div>
+    <div class="qa"><div class="q">Can I cancel whenever I like?</div>
+      <div class="a">Yes. Plans are rolling and you can cancel any time from your account &mdash; you keep access until the end of the period you've paid for.</div></div>
+    <div class="qa"><div class="q">Is the scan safe to run on my site?</div>
+      <div class="a">Completely. WebGuard247 is passive &mdash; it only inspects what any visitor's browser can already see. It never hacks, port-scans, logs in, or touches anything private.</div></div>
+  </section>
+
+  <footer>
+    <div>WebGuard247 &mdash; passive website security scanner</div>
+    <div>&copy; <span id="yr"></span> ONLINE PORQUPINE LTD</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  function setBilling(mode){
+    document.getElementById('bm').classList.toggle('on',mode==='m');
+    document.getElementById('by').classList.toggle('on',mode==='y');
+    document.querySelectorAll('.amt[data-m]').forEach(function(el){
+      el.textContent = mode==='m' ? el.dataset.m : el.dataset.y;
+    });
+    document.querySelectorAll('.per[data-m]').forEach(function(el){
+      el.textContent = mode==='m' ? el.dataset.m : el.dataset.y;
+    });
+    var noteM='Billed monthly', noteY='Billed annually';
+    document.getElementById('note-pro').textContent   = mode==='m'?noteM:noteY;
+    document.getElementById('note-agency').textContent = mode==='m'?noteM:noteY;
+  }
+
+  // Placeholder until Stripe checkout is wired in (next build step).
+  var t;
+  function choosePlan(plan){
+    var el=document.getElementById('toast');
+    el.textContent = (plan==='Fix-It Guide')
+      ? 'Secure checkout for the Fix-It Guide switches on in the next build step.'
+      : 'Secure '+plan+' checkout switches on in the next build step.';
+    el.classList.add('show');
+    clearTimeout(t); t=setTimeout(function(){el.classList.remove('show');},3200);
+  }
+</script>
+</body>
+</html>

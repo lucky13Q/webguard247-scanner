@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebGuard247 — Account</title>
+<meta name="description" content="Sign in to your WebGuard247 account to manage your plan, sites and scan history." />
+<meta name="author" content="ONLINE PORQUPINE LTD" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070a09; --panel:#0f1613; --panel2:#0b1110; --line:#1d2a24; --line2:#27362f;
+    --ink:#e9f1ec; --muted:#7d8d84; --muted2:#9fb0a6;
+    --accent:#b8ff3a; --accent-dim:#7fae2e;
+    --pass:#b8ff3a; --warn:#ffb340; --fail:#ff5a5f; --info:#5f8295;
+    --mono:'JetBrains Mono',ui-monospace,monospace; --body:'Sora',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.6;
+    background-image:
+      radial-gradient(1100px 600px at 78% -8%, rgba(184,255,58,.10), transparent 58%),
+      radial-gradient(800px 500px at 5% 18%, rgba(95,130,149,.07), transparent 55%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:auto,auto,48px 48px,48px 48px;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:14px;flex-wrap:wrap}
+  .brand{font-family:var(--mono);font-weight:800;letter-spacing:-1px;font-size:21px;text-decoration:none}
+  .brand b{color:var(--accent)} .brand .d{color:var(--accent)}
+  .nav-right{display:flex;align-items:center;gap:18px;font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+  .nav-right a{text-decoration:none}
+  .nav-right a.cur{color:var(--ink)}
+  .nav-cta{color:#08120a;background:var(--accent);padding:9px 16px;border-radius:8px;text-decoration:none;font-weight:800;letter-spacing:.5px}
+
+  main{display:flex;justify-content:center;padding:48px 0 80px;animation:rise .6s ease both}
+  .card{width:100%;max-width:440px;background:var(--panel);border:1px solid var(--line2);border-radius:18px;padding:34px 30px;
+    box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent-dim);text-align:center;margin-bottom:10px}
+  .card h1{font-family:var(--mono);font-weight:800;font-size:26px;letter-spacing:-1px;text-align:center;margin:0 0 4px}
+  .sub{color:var(--muted2);font-size:13.5px;font-weight:300;text-align:center;margin:0 0 24px}
+
+  .tabs{display:flex;background:var(--panel2);border:1px solid var(--line2);border-radius:11px;padding:4px;margin-bottom:22px}
+  .tabs button{flex:1;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--muted2);
+    background:transparent;border:none;padding:10px;border-radius:8px;cursor:pointer;transition:.15s}
+  .tabs button.on{background:var(--accent);color:#08120a;font-weight:800}
+
+  label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+  .field{margin-bottom:16px}
+  input{width:100%;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;color:var(--ink);
+    font-family:var(--body);font-size:15px;padding:13px 14px;transition:.15s}
+  input:focus{outline:none;border-color:var(--accent-dim);box-shadow:0 0 0 3px rgba(184,255,58,.12)}
+  input::placeholder{color:#5a6a61}
+  .hint{font-size:11.5px;color:var(--muted);font-family:var(--mono);margin-top:6px}
+
+  .btn{width:100%;font-family:var(--mono);font-weight:800;font-size:14px;letter-spacing:.5px;color:#08120a;background:var(--accent);
+    border:none;border-radius:11px;padding:14px;cursor:pointer;transition:.15s;margin-top:4px}
+  .btn:hover{filter:brightness(1.08)}
+  .btn:disabled{opacity:.55;cursor:default;filter:none}
+
+  .msg{font-family:var(--mono);font-size:12.5px;line-height:1.5;border-radius:10px;padding:12px 14px;margin-top:18px;display:none}
+  .msg.show{display:block}
+  .msg.err{background:rgba(255,90,95,.10);border:1px solid rgba(255,90,95,.35);color:#ffb3b5}
+  .msg.ok{background:rgba(184,255,58,.08);border:1px solid rgba(184,255,58,.32);color:#d8ffa0}
+
+  .signed{text-align:center}
+  .signed .badge{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--accent-dim);border:1px solid rgba(184,255,58,.3);border-radius:999px;padding:6px 13px;margin-bottom:18px}
+  .signed .email{font-family:var(--mono);font-size:16px;font-weight:600;word-break:break-all;margin:0 0 6px}
+  .signed p{color:var(--muted2);font-size:13.5px;font-weight:300;margin:0 0 24px}
+  .btn.ghost{background:transparent;border:1px solid var(--line2);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--accent-dim);filter:none}
+
+  .foot-link{text-align:center;margin-top:18px;font-size:12.5px;color:var(--muted)}
+  .foot-link a{color:var(--accent-dim);text-decoration:none}
+  footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:12.5px;font-family:var(--mono);text-align:center}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(8,18,10,.35);border-top-color:#08120a;border-radius:50%;animation:sp .6s linear infinite;vertical-align:-2px;margin-right:7px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="index.html">Web<b>Guard</b><span class="d">&middot;</span>247</a>
+    <div class="nav-right">
+      <a href="index.html#how">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="login.html" class="cur">Log in</a>
+      <a href="index.html#top" class="nav-cta">Scan a site</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="card">
+
+      <!-- AUTH VIEW (logged out) -->
+      <div id="authView">
+        <div class="eyebrow">WebGuard247 Account</div>
+        <h1 id="title">Welcome back</h1>
+        <p class="sub" id="subtitle">Log in to manage your plan and your sites.</p>
+
+        <div class="tabs">
+          <button id="tabLogin" class="on" onclick="setMode('login')">Log in</button>
+          <button id="tabSignup" onclick="setMode('signup')">Sign up</button>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+          <div class="hint" id="pwHint" style="display:none">At least 6 characters.</div>
+        </div>
+
+        <button class="btn" id="submitBtn" onclick="submit()">Log in</button>
+
+        <div class="msg" id="msg"></div>
+        <div class="foot-link" id="footLink"></div>
+      </div>
+
+      <!-- SIGNED-IN VIEW -->
+      <div id="signedView" class="signed" style="display:none">
+        <div class="badge">● Signed in</div>
+        <div class="email" id="whoEmail"></div>
+        <p>You're all set. Your dashboard — with your sites, scores and scan history — is coming in the next build steps.</p>
+        <button class="btn" onclick="location.href='index.html#top'">Run a scan</button>
+        <button class="btn ghost" style="margin-top:10px" onclick="logout()">Log out</button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>&copy; <span id="yr"></span> ONLINE PORQUPINE LTD &mdash; WebGuard247</footer>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const SUPABASE_URL = 'https://uhyuvlqxlfvolmykrmce.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_Q9WMLz21myzh8INijY0mYA_s2g8Phib';
+  const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  let mode = 'login';
+  const $ = (id) => document.getElementById(id);
+
+  function showMsg(text, kind){
+    const m = $('msg');
+    m.textContent = text;
+    m.className = 'msg show ' + kind;
+  }
+  function clearMsg(){ const m=$('msg'); m.className='msg'; m.textContent=''; }
+
+  window.setMode = function(m){
+    mode = m;
+    clearMsg();
+    $('tabLogin').classList.toggle('on', m==='login');
+    $('tabSignup').classList.toggle('on', m==='signup');
+    $('title').textContent     = m==='login' ? 'Welcome back' : 'Create your account';
+    $('subtitle').textContent  = m==='login' ? 'Log in to manage your plan and your sites.' : 'Start with a free account — no card needed.';
+    $('submitBtn').textContent = m==='login' ? 'Log in' : 'Create account';
+    $('password').setAttribute('autocomplete', m==='login' ? 'current-password' : 'new-password');
+    $('pwHint').style.display  = m==='signup' ? 'block' : 'none';
+    $('footLink').innerHTML    = m==='login'
+      ? 'New here? <a href="#" onclick="setMode(\'signup\');return false">Create an account</a>'
+      : 'Already have an account? <a href="#" onclick="setMode(\'login\');return false">Log in</a>';
+  };
+
+  function setLoading(on, labelWhenDone){
+    const b = $('submitBtn');
+    b.disabled = on;
+    b.innerHTML = on ? '<span class="spin"></span>Working…' : labelWhenDone;
+  }
+
+  window.submit = async function(){
+    clearMsg();
+    const email = $('email').value.trim();
+    const password = $('password').value;
+    if(!email || !password){ showMsg('Please enter your email and password.', 'err'); return; }
+    if(mode==='signup' && password.length < 6){ showMsg('Password needs to be at least 6 characters.', 'err'); return; }
+
+    const doneLabel = mode==='login' ? 'Log in' : 'Create account';
+    setLoading(true, doneLabel);
+
+    try{
+      if(mode==='signup'){
+        const { data, error } = await sb.auth.signUp({ email, password });
+        if(error) throw error;
+        if(data.user && !data.session){
+          showMsg('Account created! Check your inbox for a confirmation email, then come back and log in.', 'ok');
+          window.setMode('login');
+        }
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if(error) throw error;
+        // onAuthStateChange will switch the view
+      }
+    } catch(err){
+      const m = (err && err.message) ? err.message : 'Something went wrong. Please try again.';
+      showMsg(m, 'err');
+    } finally {
+      setLoading(false, doneLabel);
+    }
+  };
+
+  window.logout = async function(){
+    await sb.auth.signOut();
+  };
+
+  function render(session){
+    if(session && session.user){
+      $('authView').style.display = 'none';
+      $('signedView').style.display = 'block';
+      $('whoEmail').textContent = session.user.email;
+    } else {
+      $('signedView').style.display = 'none';
+      $('authView').style.display = 'block';
+    }
+  }
+
+  // Initial state + react to login/logout
+  const { data:{ session } } = await sb.auth.getSession();
+  render(session);
+  sb.auth.onAuthStateChange((_event, session) => render(session));
+
+  // default footer link
+  window.setMode('login');
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
