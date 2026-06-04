@@ -131,6 +131,7 @@
       <!-- SIGNED-IN VIEW -->
       <div id="signedView" class="signed" style="display:none">
         <div class="badge">● Signed in</div>
+        <div class="msg ok" id="buyMsg" style="margin:0 0 18px"></div>
         <div class="email" id="whoEmail"></div>
         <p>You're all set. Your dashboard — with your sites, scores and scan history — is coming in the next build steps.</p>
         <button class="btn" onclick="location.href='index.html#top'">Run a scan</button>
@@ -235,6 +236,12 @@
   // default footer link
   window.setMode('login');
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Show a confirmation if the visitor has just returned from a successful checkout.
+  if (new URLSearchParams(location.search).get('checkout') === 'success') {
+    const b = document.getElementById('buyMsg');
+    if (b) { b.textContent = 'Payment received \u2014 thank you! (Test mode: no real money was taken.)'; b.classList.add('show'); }
+  }
 </script>
 </body>
 </html>

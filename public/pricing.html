@@ -171,7 +171,7 @@
         <li><span class="ck">&check;</span> Downloadable PDF to keep or share</li>
         <li><span class="ck">&check;</span> 1 website</li>
       </ul>
-      <a class="pcta" onclick="choosePlan('Fix-It Guide')">Get the guide</a>
+      <a class="pcta" onclick="startCheckout('guide')">Get the guide</a>
     </div>
 
     <!-- PRO -->
@@ -189,7 +189,7 @@
         <li><span class="ck">&check;</span> Scan history &amp; trends</li>
         <li><span class="ck">&check;</span> 1 website</li>
       </ul>
-      <a class="pcta solid" onclick="choosePlan('Pro')">Get Pro</a>
+      <a class="pcta solid" onclick="startCheckout('pro')">Get Pro</a>
     </div>
 
     <!-- AGENCY -->
@@ -206,7 +206,7 @@
         <li><span class="ck">&check;</span> One dashboard for every site</li>
         <li><span class="ck">&check;</span> Priority support</li>
       </ul>
-      <a class="pcta" onclick="choosePlan('Agency')">Get Agency</a>
+      <a class="pcta" onclick="startCheckout('agency')">Get Agency</a>
     </div>
 
   </section>
@@ -251,32 +251,66 @@
 
 <div class="toast" id="toast"></div>
 
-<script>
-  document.getElementById('yr').textContent=new Date().getFullYear();
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const SUPABASE_URL = 'https://uhyuvlqxlfvolmykrmce.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_Q9WMLz21myzh8INijY0mYA_s2g8Phib';
+  const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  function setBilling(mode){
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  let billing = 'm';
+  window.setBilling = function(mode){
+    billing = mode;
     document.getElementById('bm').classList.toggle('on',mode==='m');
     document.getElementById('by').classList.toggle('on',mode==='y');
-    document.querySelectorAll('.amt[data-m]').forEach(function(el){
-      el.textContent = mode==='m' ? el.dataset.m : el.dataset.y;
-    });
-    document.querySelectorAll('.per[data-m]').forEach(function(el){
-      el.textContent = mode==='m' ? el.dataset.m : el.dataset.y;
-    });
+    document.querySelectorAll('.amt[data-m]').forEach(function(el){ el.textContent = mode==='m' ? el.dataset.m : el.dataset.y; });
+    document.querySelectorAll('.per[data-m]').forEach(function(el){ el.textContent = mode==='m' ? el.dataset.m : el.dataset.y; });
     var noteM='Billed monthly', noteY='Billed annually';
     document.getElementById('note-pro').textContent   = mode==='m'?noteM:noteY;
     document.getElementById('note-agency').textContent = mode==='m'?noteM:noteY;
+  };
+
+  var t;
+  function toast(msg){
+    var el=document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(t); t=setTimeout(function(){el.classList.remove('show');},4000);
   }
 
-  // Placeholder until Stripe checkout is wired in (next build step).
-  var t;
-  function choosePlan(plan){
-    var el=document.getElementById('toast');
-    el.textContent = (plan==='Fix-It Guide')
-      ? 'Secure checkout for the Fix-It Guide switches on in the next build step.'
-      : 'Secure '+plan+' checkout switches on in the next build step.';
-    el.classList.add('show');
-    clearTimeout(t); t=setTimeout(function(){el.classList.remove('show');},3200);
+  // Combine the button + the monthly/yearly toggle into a concrete plan name.
+  function planKey(base){
+    if(base==='guide') return 'guide';
+    return base + (billing==='y' ? '_yearly' : '_monthly'); // e.g. pro_monthly, agency_yearly
+  }
+
+  window.startCheckout = async function(base){
+    // Buying requires an account, so the purchase ties to the right person.
+    const { data:{ session } } = await sb.auth.getSession();
+    if(!session || !session.user){
+      toast('Please log in or create an account first \u2014 taking you there now\u2026');
+      setTimeout(function(){ location.href = 'login.html?next=pricing'; }, 1500);
+      return;
+    }
+    toast('Taking you to secure checkout\u2026');
+    try{
+      const resp = await fetch('/.netlify/functions/create-checkout', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ plan: planKey(base), userId: session.user.id, email: session.user.email })
+      });
+      const data = await resp.json();
+      if(data.url){ location.href = data.url; }
+      else { toast(data.error || 'Sorry \u2014 could not start checkout. Please try again.'); }
+    } catch(e){
+      toast('Sorry \u2014 could not reach checkout. Please try again.');
+    }
+  };
+
+  // Friendly note if they came back from a cancelled checkout.
+  if(location.search.indexOf('checkout=cancelled') > -1){
+    toast('Checkout cancelled \u2014 no payment was taken.');
   }
 </script>
 </body>
