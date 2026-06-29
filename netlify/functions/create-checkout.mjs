@@ -8,13 +8,13 @@
 
 // Plan name -> Stripe price + checkout mode.
 // The price is decided HERE on the server, so the browser can only choose a plan
-// name, never an amount. (These are the TEST/sandbox price IDs.)
+// name, never an amount. (These are the LIVE price IDs.)
 const PLANS = {
-  guide:          { price: 'price_1TeYt7CWpCO9ZCTC5ZL0mLxD', mode: 'payment' },
-  pro_monthly:    { price: 'price_1TeZFPCWpCO9ZCTChuOg3kCM', mode: 'subscription' },
-  pro_yearly:     { price: 'price_1TeZHsCWpCO9ZCTCe8rT9nxp', mode: 'subscription' },
-  agency_monthly: { price: 'price_1TeZ1bCWpCO9ZCTCeL8UKaLR', mode: 'subscription' },
-  agency_yearly:  { price: 'price_1TeYwECWpCO9ZCTCr34h5eTg', mode: 'subscription' },
+  guide:          { price: 'price_1TnkYbCWpCO9ZCTCa0hKIX90', mode: 'payment' },
+  pro_monthly:    { price: 'price_1Tnkd0CWpCO9ZCTCNuejm8Jx', mode: 'subscription' },
+  pro_yearly:     { price: 'price_1TnkgmCWpCO9ZCTCMUynxEYV', mode: 'subscription' },
+  agency_monthly: { price: 'price_1TnkiICWpCO9ZCTC8IWh7K68', mode: 'subscription' },
+  agency_yearly:  { price: 'price_1TnkkECWpCO9ZCTC9NE2J285', mode: 'subscription' },
 };
 
 const SITE = 'https://webguard247.com';
