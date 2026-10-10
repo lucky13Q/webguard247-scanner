@@ -175,8 +175,8 @@
   </section>
 
   <footer>
-    <div>WebGuard247 &mdash; passive website security scanner</div>
-    <div>&copy; <span id="yr"></span> ONLINE PORQUPINE LTD</div>
+    <div>WebGuard247 &mdash; passive website security scanner &middot; <a href="/fix" style="color:var(--accent);text-decoration:none">We'll fix it for you &rarr;</a></div>
+    <div>&copy; <span id="yr"></span> ONLINE PORQUPINE LTD &middot; Company no. 17108652 &middot; <a href="/terms">Terms</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/refunds">Refunds</a> &middot; <a href="mailto:hello@onlineporqupine.com">Contact</a></div>
   </footer>
 </div>
 
@@ -206,6 +206,7 @@ function render(rep){
     html+='<div class="upsell"><div class="upsell-h">&#128274; '+problems+' issue'+(problems===1?'':'s')+' found on this site</div>'
       +'<p>Your free scan shows <em>where</em> the problems are. Unlock the Fix-It Guide to see exactly what each issue is &mdash; and the plain-English steps to fix it.</p>'
       +'<a href="pricing.html">Unlock the fixes &mdash; &pound;4.99 &rarr;</a></div>';
+    html+='<div class="upsell slim"><strong>Don\'t fancy doing it yourself?</strong> We\'ll fix everything on this report for you, re-scan it and send you the before &amp; after &mdash; from &pound;79. <a href="fix.html">Tell me more &rarr;</a></div>';
   }
   for(const cat in rep.categories){
     html+='<div class="cat"><h3>'+cat+'</h3>';
