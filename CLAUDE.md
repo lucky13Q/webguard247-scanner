@@ -29,6 +29,23 @@ The founder is **non-technical**. When you make changes:
   end-to-end. Note: a second Stripe account exists (created by another AI tool,
   Manus) — do NOT use it. Only `acct_1TPPw7CWpCO9ZCTC` is correct.
 
+## Scanning rules — legal boundary (do not cross)
+This scanner is PASSIVE ONLY: it inspects only what any ordinary web browser
+can see when visiting a site (public headers, HTTPS/certificate details,
+publicly served pages). This is deliberate — it means users may scan any site
+without proving they own it.
+
+- NEVER add "active" scanning features: no probing for vulnerabilities, no
+  brute-forcing, no fuzzing, no testing logins, no requests designed to
+  trigger errors or bypass protections. In the UK, active scanning of sites
+  you don't own or have permission for can be a criminal offence (Computer
+  Misuse Act).
+- If active checks are ever proposed in future, domain ownership verification
+  (DNS record, file upload, or email to the domain itself) becomes mandatory
+  FIRST — and the founder must explicitly approve the feature. A collected
+  email address alone is NOT proof of ownership.
+- User-facing copy should reassure: scans are passive and read-only.
+
 ## Pricing (source of truth for any checkout/product code)
 - **Fix-It Guide** — £4.99, one-off payment
 - **Pro** — £9 / month, or £89 / year
