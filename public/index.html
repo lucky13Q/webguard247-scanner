@@ -95,6 +95,24 @@
   .upsell p{color:var(--muted2);font-size:14px;margin:0 0 14px;line-height:1.55}
   .upsell a{display:inline-block;color:#08120a;background:var(--accent);padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:800;letter-spacing:.3px;font-family:var(--mono);font-size:13.5px}
   .upsell.slim{background:none;border:none;padding:16px 0 0;text-align:center;margin-top:6px}
+  .capture{margin-top:20px;border:1px solid var(--line2);background:var(--panel);border-radius:12px;padding:18px}
+  .capture-h{font-family:var(--mono);font-weight:800;font-size:15px;color:var(--ink);margin-bottom:6px}
+  .capture p{color:var(--muted2);font-size:14px;margin:0 0 14px;line-height:1.55}
+  .capture .row{display:flex;gap:10px;flex-wrap:wrap}
+  .capture input[type=email]{flex:1;min-width:240px;background:var(--panel2);border:1px solid var(--line2);color:var(--ink);
+    font-family:var(--mono);font-size:15px;padding:15px 16px;border-radius:11px;outline:none;transition:.15s}
+  .capture input[type=email]:focus{border-color:var(--accent-dim);box-shadow:0 0 0 3px rgba(184,255,58,.12)}
+  .capture button{background:var(--accent);color:#08120a;border:none;font-family:var(--mono);font-weight:800;font-size:15px;
+    padding:0 26px;border-radius:11px;cursor:pointer;letter-spacing:.5px;transition:.15s}
+  .capture button:disabled{opacity:.5;cursor:not-allowed}
+  .capture .opt{display:flex;gap:9px;align-items:flex-start;margin-top:13px;color:var(--muted2);font-size:13px;line-height:1.5}
+  .capture .opt input{margin-top:3px;accent-color:var(--accent)}
+  .capture .small{color:var(--muted);font-size:12px;margin-top:11px;line-height:1.5}
+  .capture .small a{color:var(--accent-dim)}
+  .capture .msg{font-family:var(--mono);font-size:13.5px;margin-top:12px;min-height:1.2em}
+  .capture .msg.ok{color:var(--pass)}
+  .capture .msg.bad{color:var(--warn)}
+  .hide{display:none!important}
   .err{color:var(--fail);font-family:var(--mono);margin-top:24px}
   section.block{padding:64px 0;border-top:1px solid var(--line)}
   .kicker{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent-dim);margin-bottom:14px}
@@ -147,6 +165,23 @@
       <div class="bar"><i></i></div>
     </div>
     <div id="results"></div>
+
+    <form class="capture hide" id="capture" name="scan-report" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="scan-report">
+      <p class="hide"><label>Leave this empty: <input name="bot-field" tabindex="-1"></label></p>
+      <div class="capture-h">&#9993; Email me these results</div>
+      <p>We'll send you your grade and the red, amber and green list, so you have it in writing. The step-by-step fixes are the &pound;4.99 guide.</p>
+      <div class="row">
+        <input id="rep-email" name="Email" type="email" required placeholder="you@yourbusiness.com" autocomplete="email">
+        <button type="submit" id="rep-send">Send it</button>
+      </div>
+      <label class="opt"><input type="checkbox" name="Marketing opt-in" value="yes"> Also tell me about fixes, offers and new checks. Unsubscribe any time.</label>
+      <input type="hidden" name="Website scanned" id="rep-site">
+      <input type="hidden" name="Grade" id="rep-grade">
+      <input type="hidden" name="Issues found" id="rep-issues">
+      <div class="small">We use your address to send these results and to reply to you. Nothing else unless you tick the box. See our <a href="/privacy">Privacy policy</a>.</div>
+      <div class="msg" id="rep-msg"></div>
+    </form>
   </header>
 
   <section class="block" id="checks">
@@ -227,12 +262,18 @@ function render(rep){
     html+='<div class="upsell slim"><a href="pricing.html">See all '+problems+' fixes in the Fix-It Guide &mdash; &pound;4.99 &rarr;</a></div>';
   }
   const box=$('#results'); box.innerHTML=html; box.style.display='block';
+  $('#rep-site').value=rep.target||'';
+  $('#rep-grade').value=(rep.grade||'')+(rep.score!=null?' ('+rep.score+')':'');
+  $('#rep-issues').value=String(problems);
+  const m=$('#rep-msg'); m.className='msg'; m.textContent='';
+  $('#capture').classList.remove('hide');
   box.scrollIntoView({behavior:'smooth',block:'start'});
 }
 async function run(){
   const url=$('#url').value.trim();
   if(!url){$('#url').focus();return;}
   $('#go').disabled=true; $('#results').style.display='none'; $('#scanning').style.display='block';
+  $('#capture').classList.add('hide');
   let i=0; const tick=setInterval(function(){$('#scanmsg').textContent=phases[i++%phases.length];},900);
   try{
     const res=await fetch(ENDPOINT+'?url='+encodeURIComponent(url));
@@ -248,6 +289,23 @@ async function run(){
 }
 $('#go').addEventListener('click',run);
 $('#url').addEventListener('keydown',function(e){if(e.key==='Enter')run();});
+$('#capture').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const f=e.currentTarget, btn=$('#rep-send'), msg=$('#rep-msg');
+  btn.disabled=true; msg.className='msg'; msg.textContent='Sending…';
+  try{
+    const res=await fetch('/',{method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(new FormData(f)).toString()});
+    if(!res.ok) throw new Error('status '+res.status);
+    msg.className='msg ok';
+    msg.textContent='Got it. We’ll email these results over shortly — check your junk folder too.';
+    $('#rep-email').value='';
+  }catch(err){
+    msg.className='msg bad';
+    msg.textContent='That didn’t send. Try again, or email hello@onlineporqupine.com.';
+  }finally{ btn.disabled=false; }
+});
 </script>
 </body>
 </html>
