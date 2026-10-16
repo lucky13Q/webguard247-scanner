@@ -179,6 +179,7 @@
       <input type="hidden" name="Website scanned" id="rep-site">
       <input type="hidden" name="Grade" id="rep-grade">
       <input type="hidden" name="Issues found" id="rep-issues">
+      <input type="hidden" name="Report summary" id="rep-summary">
       <div class="small">We use your address to send these results and to reply to you. Nothing else unless you tick the box. See our <a href="/privacy">Privacy policy</a>.</div>
       <div class="msg" id="rep-msg"></div>
     </form>
@@ -228,6 +229,23 @@ function gauge(score){
    +'<circle cx="65" cy="65" r="'+r+'" stroke="var(--line2)" stroke-width="10" fill="none"/>'
    +'<circle cx="65" cy="65" r="'+r+'" stroke="'+col+'" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'" style="transition:stroke-dashoffset 1s ease"/></svg>';
 }
+// Plain-text version of the FREE results only: category, check title and
+// its red/amber/green status. The written fix for each issue stays locked
+// behind the £4.99 guide and is deliberately never included here.
+function summarise(rep){
+  const s=rep.summary||{};
+  const mark={pass:'OK  ',warn:'WARN',fail:'FAIL',info:'INFO'};
+  let out='WebGuard247 — results for '+(rep.target||'your site')+'\n';
+  out+='Grade '+(rep.grade||'?')+' — score '+(rep.score!=null?rep.score:'?')+' out of 100\n';
+  out+=(s.pass||0)+' passed, '+(s.warn||0)+' warnings, '+(s.fail||0)+' failed, out of '+(rep.total||0)+' checks\n';
+  for(const cat in rep.categories){
+    out+='\n'+cat.toUpperCase()+'\n';
+    rep.categories[cat].forEach(function(it){
+      out+='  ['+(mark[it.status]||it.status)+'] '+it.title+'\n';
+    });
+  }
+  return out;
+}
 function render(rep){
   const s=rep.summary;
   let html='<div class="scorerow"><div class="gauge">'+gauge(rep.score)
@@ -265,6 +283,7 @@ function render(rep){
   $('#rep-site').value=rep.target||'';
   $('#rep-grade').value=(rep.grade||'')+(rep.score!=null?' ('+rep.score+')':'');
   $('#rep-issues').value=String(problems);
+  $('#rep-summary').value=summarise(rep);
   const m=$('#rep-msg'); m.className='msg'; m.textContent='';
   $('#capture').classList.remove('hide');
   box.scrollIntoView({behavior:'smooth',block:'start'});
