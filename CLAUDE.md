@@ -3,12 +3,18 @@
 ## What this project is
 WebGuard247 is a website security scanner. A visitor enters their site's URL,
 we scan it, and we report back the security issues we find — then sell help
-fixing them. Operated by **ONLINE PORCUPINE LTD** (UK company).
+fixing them. Operated by **ONLINE PORQUPINE LTD**, a company registered in
+England and Wales, number 17108652, based in West Mersea, Essex.
 
 Live site: https://webguard247.com
 
 ## Who you're working with
-The founder is **non-technical**. When you make changes:
+The founder is **non-technical**. He dictates by voice, and his dictation
+writes the company name as "Porcupine" with a C every time. It is
+**Porqupine, with a Q** — in code, copy, commit messages and replies alike.
+Read his "Porcupine" as the brand name; never write it back that way.
+
+When you make changes:
 - Explain what you're doing and why, in plain English. Skip unexplained jargon.
 - Work **one task at a time**. Finish and confirm before moving to the next.
 - When a file needs editing, give the **complete file**, not just a diff or
