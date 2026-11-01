@@ -58,7 +58,7 @@ function plainBody({ site, grade, issues, summary }) {
     lines.push('settings drift.');
   }
   lines.push('');
-  lines.push('Any questions, just reply to this email or ring 07375 889707.');
+  lines.push('Any questions, just reply to this email or ring 07723 575221.');
   lines.push('');
   lines.push('Colin Booker');
   lines.push('ONLINE PORQUPINE LTD · Company no. 17108652 · West Mersea, Essex');
@@ -85,7 +85,7 @@ function htmlBody({ site, grade, issues, summary }) {
   ` : `
   <p style="font-size:15px;line-height:1.6;margin:0 0 20px">Nothing needs your attention today, which is a good place to be. Worth running again in a few months — certificates expire and settings drift.</p>
   `}
-  <p style="font-size:14px;line-height:1.6;color:#9fb0a6;margin:0 0 20px">Any questions, reply to this email or ring <a href="tel:+447375889707" style="color:#b8ff3a">07375 889707</a>. A person answers.</p>
+  <p style="font-size:14px;line-height:1.6;color:#9fb0a6;margin:0 0 20px">Any questions, reply to this email or ring <a href="tel:+447723575221" style="color:#b8ff3a">07723 575221</a>. Our receptionist answers around the clock.</p>
   <p style="font-size:14px;line-height:1.6;margin:0 0 4px">Colin Booker</p>
   <p style="font-size:11px;line-height:1.6;color:#7d8d84;margin:0 0 16px">ONLINE PORQUPINE LTD · Company no. 17108652 · West Mersea, Essex</p>
   <p style="font-size:11px;line-height:1.6;color:#7d8d84;margin:0;border-top:1px solid #1d2a24;padding-top:14px">You are getting this because you asked for your results at webguard247.com. We will not add you to anything you did not tick.</p>
