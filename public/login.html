@@ -86,6 +86,7 @@ border:none;border-radius:11px;padding:14px;cursor:pointer;transition:.15s;margi
 .planbadge{font-family:var(--mono);font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
 border:1px solid var(--line2);border-radius:999px;padding:7px 14px}
 .panel{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:24px;margin-bottom:18px}
+.bonuslist{list-style:none;margin:0 0 12px;padding:0}.bonuslist li{padding:10px 0;border-top:1px solid var(--line)}.bonuslist li:first-child{border-top:0}.bonuslist a{color:var(--accent);font-weight:600;text-decoration:none}.bonuslist a:hover{text-decoration:underline}.bonuslist span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
 .paneltitle{font-family:var(--mono);font-weight:800;font-size:18px;letter-spacing:-.5px;margin:0 0 6px}
 .panelsub{color:var(--muted2);font-size:13.5px;font-weight:300;margin:0 0 18px}
 .planblurb{color:var(--muted2);font-size:14px;font-weight:300;margin:0 0 16px}
@@ -219,6 +220,17 @@ footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);f
 <h2 class="paneltitle" id="planTitle">Your plan</h2>
 <p class="planblurb" id="planBlurb"></p>
 <a class="btn inline" id="planCta" style="display:none"></a>
+</div>
+
+<div class="panel" id="bonusPanel" style="display:none">
+<h2 class="paneltitle">Your three free bonus guides</h2>
+<p class="panelsub">Included with your Fix-It Guide. Download them, keep them, share them with your team.</p>
+<ul class="bonuslist">
+<li><a href="bonus/get-found-on-google-and-ai-search.pdf" target="_blank" rel="noopener">Get Found on Google and AI Search</a> <span>workbook, checklist and prompt pack (PDF)</span></li>
+<li><a href="bonus/turn-website-visitors-into-buyers.pdf" target="_blank" rel="noopener">Turn Website Visitors Into Buyers</a> <span>workbook, checklist and prompt pack (PDF)</span></li>
+<li><a href="bonus/the-24-7-ai-customer-service-setup.pdf" target="_blank" rel="noopener">The 24/7 AI Customer Service Setup</a> <span>guide (PDF)</span></li>
+</ul>
+<p class="hint">All three open in a new tab. Problems? Email hello@onlineporqupine.com.</p>
 </div>
 
 <div class="panel">
@@ -389,6 +401,7 @@ if(out && out.plan) plan = out.plan;
 }
 } catch(e){ /* default free */ }
 currentPlan = plan;                 // remember it so the scanner can gate the fixes
+const bp = $('bonusPanel'); if(bp){ bp.style.display = canSeeFixes() ? 'block' : 'none'; }
 const info = PLAN_INFO[plan] || PLAN_INFO.free;
 const badge = $('planBadge');
 badge.textContent = info.label;
